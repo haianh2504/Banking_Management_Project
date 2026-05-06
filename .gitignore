@@ -1,0 +1,19 @@
+# Build directories
+build/
+Debug/
+Release/
+
+# VS Code
+.vscode/
+
+# Compiled object files
+*.o
+*.obj
+*.exe
+
+# IDE files
+*.sln
+*.vcxproj
+*.vcxproj.filters
+.DS_Store
+Thumbs.db
