@@ -6,6 +6,8 @@ class Account
     private:
     string AccountNumber;
     string PasswordAccount;
+    // balance
+    long long balance;
     // is_Valid_Account_Number
     static bool isValidAccountNumber(string account_number)
     {
@@ -13,7 +15,7 @@ class Account
         if(account_number.length() != 14) return false;
         for(int i = 0; i < account_number.length(); i++)
         {
-            if('0' <= account_number[i] && account_number[i] <= '9') return false;
+            if('0' > account_number[i] || account_number[i] > '9') return false;
         };
         // if pass
         return true;
@@ -34,7 +36,7 @@ class Account
         }
     };
     // Account Number
-    string GetAccountNumber()
+    const string& GetAccountNumber()const
     {
         return AccountNumber;
     };
@@ -45,7 +47,7 @@ class Account
         PasswordAccount = newPassword;
         return true;
     }
-    string GetAccountPassword()
+    const string& GetAccountPassword() const
     {
         return PasswordAccount;
     }

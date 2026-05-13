@@ -23,7 +23,7 @@ class User
     private:
     static long long UserID;
     string Username;
-    string Password; // sau này sẽ được mã hóa
+    string PasswordHash; // sau này sẽ được mã hóa
     // Thông tin cá nhân
     Name FullName;
     Date BirthDate;
@@ -32,28 +32,21 @@ class User
     // Phân quyền và trạng thái
     UserRole Role;
     AccountStatus Status;
-    // Tài khoản liên kết
-    vector<string> LinkedAccounts;
+  
     public:
     // Constructor
     User(string username, string password, Name fullname, Date birthDay, Email email, PhoneNumber phonenum, UserRole role = UserRole::USER, AccountStatus status = AccountStatus::ACTIVE); 
     // Getters
     long long GetUserID() const;
-    string GetUsername() const;
-    Name GetFullName() const;
-    Date GetBirthDate() const;
-    Email GetEmail() const;
-    PhoneNumber GetPhoneNumber() const;
-    UserRole GetRole() const;
-    AccountStatus GetStatus() const;
-    vector<string> GetLinkedAccounts() const;
+    const string& GetUsername() const;
+    const Name& GetFullName() const;
+    const Date& GetBirthDate() const;
+    const Email& GetEmail() const;
+    const PhoneNumber& GetPhoneNumber() const;
+    const UserRole& GetRole() const;
+    const AccountStatus& GetStatus() const;
     // Setters (Update thông tin cá nhân)
     void UpdateProfile(const string &name, Email &email, PhoneNumber &phone);
-    // Xác thực mật khẩu
-    bool verifyPassword(const string &password) const;
-    // Quản lý tài khoản liên kết
-    void LinkAccount(const string &accountNumber);
-    void UnlinkAccount(const string &accountNumber);
     // Trạng thái tài khoản
     void lock();
     void unlock();

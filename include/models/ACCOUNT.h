@@ -8,6 +8,8 @@ class Account
     private:
     string AccountNumber;
     string PasswordAccount;
+    // Money
+    long long balance;
     // is_Valid_Account_Number
     static bool isValidAccountNumber(string account_number);
     // is_Secured_Valid_Password
@@ -15,10 +17,10 @@ class Account
     public:
     Account(string account_number, string password_account);
     // Account Number
-    string GetAccountNumber();
+    const string& GetAccountNumber() const;
     // Account password
     bool SetAccountPassword(string newPassword);
-    string GetAccountPassword();
+    const string& GetAccountPassword() const;
     // destructor
     ~Account();
 };
