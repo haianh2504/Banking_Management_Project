@@ -8,6 +8,7 @@
 #include "../COMPOSITION/Email/Email.h"
 #include <string>
 #include <vector>
+#include <algorithm>
 #include <stdexcept>
 using namespace std;
 // Phân quyền
@@ -45,23 +46,40 @@ class User
     AccountStatus GetStatus() const { return Status; }
     vector<string> GetLinkedAccounts() const { return LinkedAccounts; }
     // Setter (cập nhật thông tin cá nhân tổng quát)
-    void UpdateProfile(const string& newPassword, const Name& newFullName, const Date& newBirthDate, const Email& newEmail, const PhoneNumber& newPhoneNumber)
+    void UpdateProfile(const Name &name, Email &email, PhoneNumber &phone)
     {
-        Password = newPassword;
-        FullName = newFullName;
-        BirthDate = newBirthDate;
-        EmailAddress = newEmail;
-        PhoneNum = newPhoneNumber;
+        // kiểm tra sau đó mới cập nhật
+        FullName = name;
+        EmailAddress = email;
+        PhoneNum = phone;
     }
-    // Setters ( chi tiết )
-    void SetPassword(string newPassword) { Password = newPassword; }
-    void SetFullName(Name newFullName) { FullName = newFullName; }
-    void SetBirthDate(Date newBirthDate) { BirthDate = newBirthDate; }
-    void SetEmail(Email newEmail) { EmailAddress = newEmail; }
-    void SetPhoneNumber(PhoneNumber newPhoneNumber) { PhoneNum = newPhoneNumber; }
-    void SetRole(UserRole newRole) { Role = newRole; }
-    void SetStatus(AccountStatus newStatus) { Status = newStatus; }
-    void AddLinkedAccount(const string& account) { LinkedAccounts.push_back(account); }
+    // Xác thực mật khẩu
+    bool verifyPassword(const string &password) const
+    {
+        return Password == password;
+    }
+    // Quản lý tài khoản liên kết
+    void LinkAccount(const string &accountNumber)
+    {
+        LinkedAccounts.push_back(accountNumber);
+    }
+    void UnlinkAccount(const string &accountNumber)
+    {
+        LinkedAccounts.erase(remove(LinkedAccounts.begin(), LinkedAccounts.end(), accountNumber), LinkedAccounts.end());
+    }
+    // Trạng thái tài khoản
+    void lock()
+    {
+        Status = AccountStatus::LOCKED;
+    }
+    void unlock()
+    {
+        Status = AccountStatus::ACTIVE;
+    }
+    bool isLocked()const
+    {
+        return Status == AccountStatus::LOCKED;
+    }
     // Destructor
     ~User() {};
 };

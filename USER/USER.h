@@ -47,16 +47,18 @@ class User
     UserRole GetRole() const;
     AccountStatus GetStatus() const;
     vector<string> GetLinkedAccounts() const;
-    // Setters
-    void SetPassword(string newPassword);
-    void SetFullName(Name newFullName);
-    void SetBirthDate(Date newBirthDate);
-    void SetEmail(Email newEmail);
-    void SetPhoneNumber(PhoneNumber newPhoneNumber);
-    void SetRole(UserRole newRole);
-    void SetStatus(AccountStatus newStatus);
-    void AddLinkedAccount(const string& account);
-    void RemoveLinkedAccount(const string& account);
+    // Setters (Update thông tin cá nhân)
+    void UpdateProfile(const string &name, Email &email, PhoneNumber &phone);
+    // Xác thực mật khẩu
+    bool verifyPassword(const string &password) const;
+    // Quản lý tài khoản liên kết
+    void LinkAccount(const string &accountNumber);
+    void UnlinkAccount(const string &accountNumber);
+    // Trạng thái tài khoản
+    void lock();
+    void unlock();
+    bool isLocked()const;
+
     // Destructor
     ~User();
 };
