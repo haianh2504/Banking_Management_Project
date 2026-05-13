@@ -1,8 +1,10 @@
+#ifndef EMAIL_H
+#define EMAIL_H
 #include <iostream>
 using namespace std;
-
 class Email
 {
+    // Basic setup
     private:
     string emailAddress;
     public:
@@ -10,5 +12,5 @@ class Email
     Email(const string& email) : emailAddress(email) {}
     void setEmail(const string& email) { emailAddress = email; }
     string getEmail() const { return emailAddress; }
-    ~Email() {};
 };
+#endif
