@@ -3,11 +3,11 @@
 #include <iostream>
 // #include "../COMPOSITION/Address/Address.h"
 // #include "../COMPOSITION/CitizenID/CitizenID.h"
-#include "../COMPOSITION/Date/Date.h"
-#include "../COMPOSITION/Name/Name.h"
-#include "../COMPOSITION/Phone_Number/PhoneNumber.h"
-#include "../COMPOSITION/Email/Email.h"
-#include "../ACCOUNT/ACCOUNT.h"
+#include "Date.h"
+#include "Name.h"
+#include "PhoneNumber.h"
+#include "Email.h"
+#include "ACCOUNT.h"
 #include <string>
 #include <vector>
 #include <stdexcept>
