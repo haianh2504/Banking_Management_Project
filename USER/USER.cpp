@@ -13,7 +13,7 @@ using namespace std;
 // Phân quyền
 enum class UserRole{ADMIN, USER, GUEST};
 // Trạng thái tài khoản
-enum class AccountStatus{ACTIVE, LOCKED, PENDING};
+enum class AccountStatus{ACTIVE,SUSPENDED,LOCKED,CLOSED};
 // ABSTRACT CLASS
 class User
 {
@@ -33,8 +33,8 @@ class User
     vector<string> LinkedAccounts;
     public:
     // Constructor
-    User(string username, string password, Name fullname, Date birthDay, Email email, PhoneNumber phonenum, UserRole role = UserRole::USER, AccountStatus status = AccountStatus::PENDING):Username(username), Password(password), FullName(fullname), BirthDate(birthDay), EmailAddress(email), PhoneNum(phonenum), Role(role), Status(status) { UserID++; }
-    // Getters
+    User(string username, string password, Name fullname, Date birthDay, Email email, PhoneNumber phonenum, UserRole role = UserRole::USER, AccountStatus status = AccountStatus::ACTIVE):Username(username), Password(password), FullName(fullname), BirthDate(birthDay), EmailAddress(email), PhoneNum(phonenum), Role(role), Status(status) { UserID++; }
+    // Getters ( chi tiết )
     long long GetUserID() const { return UserID; }
     string GetUsername() const { return Username; }
     Name GetFullName() const { return FullName; }
@@ -44,7 +44,16 @@ class User
     UserRole GetRole() const { return Role; }
     AccountStatus GetStatus() const { return Status; }
     vector<string> GetLinkedAccounts() const { return LinkedAccounts; }
-    // Setters
+    // Setter (cập nhật thông tin cá nhân tổng quát)
+    void UpdateProfile(const string& newPassword, const Name& newFullName, const Date& newBirthDate, const Email& newEmail, const PhoneNumber& newPhoneNumber)
+    {
+        Password = newPassword;
+        FullName = newFullName;
+        BirthDate = newBirthDate;
+        EmailAddress = newEmail;
+        PhoneNum = newPhoneNumber;
+    }
+    // Setters ( chi tiết )
     void SetPassword(string newPassword) { Password = newPassword; }
     void SetFullName(Name newFullName) { FullName = newFullName; }
     void SetBirthDate(Date newBirthDate) { BirthDate = newBirthDate; }
@@ -56,3 +65,4 @@ class User
     // Destructor
     ~User() {};
 };
+long long User::UserID = 0;

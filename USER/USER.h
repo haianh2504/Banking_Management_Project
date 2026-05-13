@@ -16,7 +16,7 @@ using namespace std;
 // Phân quyền
 enum class UserRole{ADMIN, USER, GUEST};
 // Trạng thái tài khoản
-enum class AccountStatus{ACTIVE, LOCKED, PENDING};
+enum class AccountStatus{ACTIVE,SUSPENDED,LOCKED,CLOSED};
 class User
 {
     // Định danh & định danh hệ thống
@@ -36,7 +36,7 @@ class User
     vector<string> LinkedAccounts;
     public:
     // Constructor
-    User(string username, string password, Name fullname, Date birthDay, Email email, PhoneNumber phonenum, UserRole role = UserRole::USER, AccountStatus status = AccountStatus::PENDING); 
+    User(string username, string password, Name fullname, Date birthDay, Email email, PhoneNumber phonenum, UserRole role = UserRole::USER, AccountStatus status = AccountStatus::ACTIVE); 
     // Getters
     long long GetUserID() const;
     string GetUsername() const;
