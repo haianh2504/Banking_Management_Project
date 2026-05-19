@@ -30,7 +30,8 @@ class User
     // Phân quyền và trạng thái
     UserRole Role;
     AccountStatus Status;
-   
+    // Bank Accounts
+    vector<string> BankAccountIDs; // Lưu trữ ID của các tài khoản ngân hàng liên kết với người dùng (có thể cần một vector<Account> nếu muốn lưu trữ thông tin chi tiết hơn)
     public:
     // Constructor
     User(const string &username, const string &password, const Name &fullname, const Date &birthDay, const Email &email, const PhoneNumber &phonenum, UserRole role = UserRole::USER, AccountStatus status = AccountStatus::ACTIVE):Username(username), PasswordHash(password), FullName(fullname), BirthDate(birthDay), EmailAddress(email), PhoneNum(phonenum), Role(role), Status(status) {}
@@ -44,13 +45,22 @@ class User
     const UserRole& GetRole() const { return Role; }
     const AccountStatus& GetStatus() const { return Status; }
     // Setter (cập nhật thông tin cá nhân tổng quát)
-    void UpdateProfile(const Name &name, const Email &email, const PhoneNumber &phone)
+    void UpdatePersonalInfo(const Name &name, const Email &email, const PhoneNumber &phone)
     {
-        // kiểm tra sau đó mới cập nhật
+        // kiểm tra bằng lớp service sau đó mới cập nhật
         FullName = name;
         EmailAddress = email;
         PhoneNum = phone;
     } 
+    void ChangePassword(const string &newPassword)
+    {
+        // user_service xử lý validation và só lượng tài khoản tối đa cho phép
+        PasswordHash = newPassword; // Giả sử có hàm SetPasswordHash trong User_Service
+    }
+    void AddingBankAccount(const Account &account)
+    {
+        BankAccountIDs.push_back(account.GetAccountNumber());
+    }
     // Trạng thái tài khoản
     void lock()
     {

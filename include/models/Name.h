@@ -29,6 +29,8 @@ class Name
     // Surname
     bool SetSurName(std::string surName);
     std::string GetSurName()const;
+    // get full name string
+    string GetFullName() const;
     // destructor
     ~Name();
     

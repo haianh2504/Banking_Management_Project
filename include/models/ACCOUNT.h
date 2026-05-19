@@ -14,6 +14,7 @@ class Account
     static bool isValidAccountNumber(string account_number);
     // is_Secured_Valid_Password
     static bool isSecuredPassword(string password);
+    
     public:
     Account(string account_number, string password_account);
     // Account Number

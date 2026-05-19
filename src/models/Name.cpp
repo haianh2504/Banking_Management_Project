@@ -169,7 +169,11 @@ class Name
     {
         return Surname;
     }
-    
+    // Full Name
+    string GetFullName() const{
+        string fullName = FirstName + " " + MiddleName + " " + Surname;
+        return fullName;
+    }
     // destructor
     ~Name(){};
 };

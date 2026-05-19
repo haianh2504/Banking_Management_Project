@@ -1,5 +1,7 @@
 #ifndef EMAIL_H
 #define EMAIL_H
+#include <regex>
+#include <string>
 #include <iostream>
 using namespace std;
 class Email
@@ -8,9 +10,16 @@ class Email
     private:
     string emailAddress;
     public:
-    Email() : emailAddress("") {}
-    Email(const string& email) : emailAddress(email) {}
-    void setEmail(const string& email) { emailAddress = email; }
-    string getEmail() const { return emailAddress; }
+    // hàm checking validation 
+    static bool isValidEmail(const string& newEmail);
+    // constructor
+    Email();
+    Email(const string& email);
+    // setter
+    void setEmail(const string& email);
+    // getter
+    string getEmail() const;
+    // destructor
+    ~Email();
 };
 #endif

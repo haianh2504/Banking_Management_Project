@@ -1,4 +1,8 @@
 #include <iostream>
+#include <string>
+#include <regex>
+#include <stdexcept>
+
 using namespace std;
 
 class PhoneNumber
@@ -6,10 +10,18 @@ class PhoneNumber
     private:
     string phoneNumber;
     public:
+    // Hàm checking validation
+    static bool isValidPhoneNumber(const string &newPhoneNumber)
+    {
+        // Biểu thức chính quy kiểm tra định dạng số điện thoại Việt Nam
+        const std::regex phoneRegex(R"(^0[35789][0-9]{8}$)");
+        
+        return std::regex_match(newPhoneNumber, phoneRegex);
+    }
     // constructor
     PhoneNumber(string phoneNum) : phoneNumber(phoneNum){
         // check for validation
-
+        if(!isValidPhoneNumber(phoneNum)) throw invalid_argument("Error: Invalid PhoneNumber");
     }
     // setter
     bool SetPhoneNumber(string phoneNum)
